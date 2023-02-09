@@ -29,6 +29,24 @@ public class StringAndStringBuilderController {
         if(method.equals("length")){
             resultST.setText(  content.length() +""   );
         }
+        else if(method.equals("startsWith")){
+
+            if(argument.contains(",")){
+
+                //multiple args
+                String[] args = argument.split(",");
+                resultST.setText(content.startsWith(args[0], Integer.parseInt(args[1])) + "");
+            }
+            else{
+
+                resultST.setText(content.startsWith(argument) + "");
+            }
+
+
+        }
+        else if(method.equals("substring")){
+            resultST.setText(content.substring( Integer.parseInt(argument) ) );
+        }
 
     }
     @FXML
@@ -44,7 +62,7 @@ public class StringAndStringBuilderController {
 
         ArrayList<String> options = new ArrayList<>();
         options.add("length");
-        options.add("startWith");
+        options.add("startsWith");
         options.add("substring");
         /*
             <select>
