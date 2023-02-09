@@ -13,9 +13,7 @@ public class GradesController {
     @FXML
     private Label letter;
 
-    @FXML
-    void onClick(ActionEvent event) {
-
+    void test(){
         //on click, swap values for letter and grade
 
         String originalGrade, originalLetter;
@@ -28,7 +26,37 @@ public class GradesController {
         score.setText(originalLetter);
         letter.setText(originalGrade);
 
+    }
 
+    @FXML
+    void onClick(ActionEvent event) {
+
+        String scoreValue = score.getText();
+        try{
+            int grade = Integer.parseInt(scoreValue);
+
+            if(grade < 0 || grade > 100)
+                throw new Exception("Invalid Grade");
+
+            StringBuilder calculatedLetter = new StringBuilder(2);
+
+            if(grade >=80 && grade <=100 )
+                calculatedLetter.append("A");
+            else if (grade >=70 && grade <= 79)
+                calculatedLetter.append("B");
+            else if (grade >=60 && grade <= 69)
+                calculatedLetter.append("C");
+            else if (grade >=50 && grade <= 59)
+                calculatedLetter.append("D");
+            else
+                calculatedLetter.append("F");
+
+
+            letter.setText(calculatedLetter.toString());
+        }
+        catch (Exception e){
+            letter.setText("N/A");
+        }
 
     }
 
